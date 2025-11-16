@@ -5,25 +5,10 @@ sources:
     database: RAW
     schema: EXPENSE
 
-    loaded_at_field: CLAIM_DATE   # optional default for all tables
-
-    freshness:
-      warn_after: {count: 12, period: hour}
-      error_after: {count: 1, period: day}
-
     tables:
       - name: expense_claims
-        description: "Raw expense claims loaded from source system"
-        columns:
-          - name: CLAIM_ID
-            description: "Unique ID for each claim"
-          - name: EMPLOYEE_ID
-            description: "Employee identifier"
-          - name: CLAIM_DATE
-            description: "When the claim was submitted"
-          - name: AMOUNT
-            description: "Claim amount"
-          - name: STATUS
-            description: "Current status of the claim"
-          - name: DESCRIPTION
-            description: "Expense claim description"
+        loaded_at_field: CLAIM_DATE
+
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 1, period: day}

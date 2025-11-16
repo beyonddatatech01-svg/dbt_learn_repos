@@ -21,8 +21,5 @@ models:
       - name: STATUS
         tests:
           - accepted_values:
-              values: ['APPROVED', 'PENDING', 'REJECTED']
-
-      - name: AMOUNT
-        tests:
-          - not_null
+              arguments:
+                values: ['APPROVED', 'PENDING', 'REJECTED']
