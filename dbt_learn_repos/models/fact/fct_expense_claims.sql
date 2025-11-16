@@ -1,35 +1,22 @@
-{{ config(
-    materialized='incremental',
-    unique_key='CLAIM_ID'
-) }}
+version: 2
 
-with claims as (
-    select *
-    from {{ ref('stg_expense_claims') }}
-),
+models:
+  - name: fct_expense_claims
+    columns:
+      - name: claim_id
+        tests:
+          - not_null
+          - unique
 
-employees as (
-    select *
-    from {{ ref('employee_master') }}
-)
+      - name: employee_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_employee')
+              field: employee_id
 
-select
-    c.claim_id,
-    c.employee_id,
-    e.employee_name,
-    e.department,
-    c.claim_date,
-    c.amount,
-    c.status,
-    c.description,
-    c.loaded_at
-from claims c
-left join employees e
-    on c.employee_id = e.employee_id
-
-where 1=1
-
-{% if is_incremental() and execute %}
-    and c.loaded_at >
-        (select max(loaded_at) from {{ this }})
-{% endif %}
+      - name: amount
+        tests:
+          - not_null
+          - accepted_range:
+              min_value: 1
