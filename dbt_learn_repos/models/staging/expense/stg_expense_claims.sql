@@ -1,10 +1,11 @@
 {{ config(materialized='view') }}
 
 select
-    claim_id,
-    employee_id,
-    claim_date,
-    amount,
-    status,
-    description
+    CLAIM_ID,
+    EMPLOYEE_ID,
+    CLAIM_DATE,
+    AMOUNT,
+    STATUS,
+    DESCRIPTION,
+    LOADED_AT
 from {{ source('raw_expense', 'expense_claims') }}
