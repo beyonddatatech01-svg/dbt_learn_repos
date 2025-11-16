@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: fct_expense_claims
+    description: "Final fact table combining expense claims with employee master data"
+    columns:
+      - name: claim_id
+        description: "Unique ID for the expense claim"
+      - name: employee_id
+        description: "Employee who submitted the claim"
+      - name: claim_date
+        description: "Date of expense"
+      - name: amount
+        description: "Amount claimed"
+      - name: status
+        description: "Approval status"
