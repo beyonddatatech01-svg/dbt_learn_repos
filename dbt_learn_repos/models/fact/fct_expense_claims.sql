@@ -27,8 +27,9 @@ from claims c
 left join employees e
     on c.employee_id = e.employee_id
 
-{% if is_incremental() %}
-    where c.loaded_at > (
-        select max(loaded_at) from {{ this }}
-    )
+where 1=1
+
+{% if is_incremental() and execute %}
+    and c.loaded_at >
+        (select max(loaded_at) from {{ this }})
 {% endif %}
