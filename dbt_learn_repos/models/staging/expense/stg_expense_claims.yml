@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_expense_claims
+    description: "Cleaned staging model for expense claims"
+
+    columns:
+      - name: CLAIM_ID
+        tests:
+          - not_null
+          - unique
+
+      - name: EMPLOYEE_ID
+        tests:
+          - not_null
+
+      - name: CLAIM_DATE
+        tests:
+          - not_null
+
+      - name: STATUS
+        tests:
+          - accepted_values:
+              values: ['APPROVED', 'PENDING', 'REJECTED']
+
+      - name: AMOUNT
+        tests:
+          - not_null
