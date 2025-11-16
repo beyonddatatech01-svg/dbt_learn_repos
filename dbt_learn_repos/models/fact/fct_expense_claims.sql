@@ -21,10 +21,11 @@ select
     c.claim_date,
     c.amount,
     c.status,
-    c.description
+    c.description,
+    c.loaded_at
 from claims c
 left join employees e
-   on c.employee_id = e.employee_id
+    on c.employee_id = e.employee_id
 
 {% if is_incremental() %}
     where c.loaded_at > (
