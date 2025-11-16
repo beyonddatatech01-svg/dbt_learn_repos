@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: raw_expense
+    database: RAW
+    schema: EXPENSE
+    tables:
+      - name: expense_claims
+        description: "Raw expense claims loaded from source system"
