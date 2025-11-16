@@ -7,8 +7,10 @@ sources:
 
     tables:
       - name: expense_claims
-        loaded_at_field: CLAIM_DATE
-
+        loaded_at_field: LOADED_AT        # MUST be here (inside the table)
+        
         freshness:
           warn_after: {count: 12, period: hour}
           error_after: {count: 1, period: day}
+
+        description: "Raw expense claims loaded from source system"
