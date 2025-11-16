@@ -17,3 +17,11 @@ clean-targets:
 models:
   dbt_learn_repos:
     +materialized: view
+
+
+seeds:
+  dbt_learn_repos:
+    +column_types:
+      EMPLOYEE_ID: number
+      EMPLOYEE_NAME: text
+      DEPARTMENT: text
