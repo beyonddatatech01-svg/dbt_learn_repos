@@ -1,5 +1,3 @@
-{{ config(materialized='view') }}
-
 select
     CLAIM_ID,
     EMPLOYEE_ID,
